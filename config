@@ -1,0 +1,130 @@
+# ==============================================================================
+# @file: ~/.config/i3/config
+# @mission: Configuração do i3wm com padrão de navegação e comandos Vim
+# ==============================================================================
+
+# Definição da tecla Mod (Mod4 = Tecla Windows / Super)
+set $mod Mod4
+
+# Fonte padrão para a barra
+font pango:monospace 10
+
+# Iniciar o gerenciador de janelas (floating modifier)
+floating_modifier $mod
+
+# --- APLICATIVOS BÁSICOS ---
+# Abrir terminal (usando o seu shell/terminal padrão)
+bindsym $mod+Return exec i3-sensible-terminal
+
+# Fechar janela focada (Padrão Vim: q para fechar/quit)
+bindsym $mod+q kill
+# Ou fechar com Alt+Shift+Q tradicional
+bindsym $mod+Shift+q kill
+
+# Iniciar lançador de aplicativos (dmenu)
+bindsym $mod+d exec --no-startup-id dmenu_run
+
+# --- NAVEGAÇÃO E MOVIMENTAÇÃO (Padrão Vim: h, j, k, l) ---
+
+# Mover foco entre janelas
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# Mover a janela atual na tela
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# --- LAYOUT E DIVISÕES ---
+
+# Dividir em colunas (horizontal) ou linhas (vertical)
+bindsym $mod+b split h
+bindsym $mod+v split v
+
+# Entrar em tela cheia para a janela focada
+bindsym $mod+f fullscreen toggle
+
+# Mudar o modo de layout (stacking, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# Alternar entre flutuante e tiling
+bindsym $mod+Shift+space floating toggle
+
+# Mudar o foco para o container pai / filho
+bindsym $mod+a focus parent
+
+# --- WORKSPACES ---
+
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# Mudar para o workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# Mover janela focalizada para o workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+# --- SISTEMA E SESSÃO ---
+
+# Recarregar o arquivo de configuração
+bindsym $mod+Shift+c reload
+# Reiniciar o i3 in-place
+bindsym $mod+Shift+r restart
+# Sair da sessão do i3
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Deseja sair do i3?' -B 'Sim' 'i3-msg exit'"
+
+# Redimensionar janela (Modo resize)
+mode "resize" {
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+
+        # Voltar ao modo normal com Return ou Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# --- BARRA DE STATUS ---
+bar {
+        status_command i3status
+}
+
+# ==============================================================================
+# @README_Plugin
+# - O que está incluído: Configuração limpa do i3wm com navegação hjkl, fechamento com q ($mod+q) e redimensionamento via vim.
+# - Como Usar: Execute este script ou salve diretamente em ~/.config/i3/config.
+# ==============================================================================
