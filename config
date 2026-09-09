@@ -12,6 +12,12 @@ font pango:monospace 10
 # Iniciar o gerenciador de janelas (floating modifier)
 floating_modifier $mod
 
+# O foco da janela segue o movimento do cursor do mouse automaticamente
+focus_follows_mouse yes
+
+# Ativa o tap-to-click no trackpad ao iniciar o i3
+exec_always --no-startup-id xinput set-prop "$(xinput list | grep -i touchpad | head -n 1 | sed 's/.*id=\([0-9]*\).*/\1/')" "libinput Tapping Enabled" 1
+
 # --- APLICATIVOS BÁSICOS ---
 # Abrir terminal (usando o seu shell/terminal padrão)
 bindsym $mod+Return exec i3-sensible-terminal
@@ -23,6 +29,7 @@ bindsym $mod+Shift+q kill
 
 # Iniciar lançador de aplicativos (dmenu)
 bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+i exec firefox
 
 # --- NAVEGAÇÃO E MOVIMENTAÇÃO (Padrão Vim: h, j, k, l) ---
 
