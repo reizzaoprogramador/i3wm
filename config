@@ -1,3 +1,4 @@
+
 # ==============================================================================
 # @file: ~/.config/i3/config
 # @mission: Configuração do i3wm com padrão de navegação e comandos Vim
@@ -17,7 +18,6 @@ focus_follows_mouse yes
 
 # Ativa o tap-to-click no trackpad ao iniciar o i3
 exec_always --no-startup-id xinput set-prop "$(xinput list | grep -i touchpad | head -n 1 | sed 's/.*id=\([0-9]*\).*/\1/')" "libinput Tapping Enabled" 1
-
 # --- APLICATIVOS BÁSICOS ---
 # Abrir terminal (usando o seu shell/terminal padrão)
 bindsym $mod+Return exec i3-sensible-terminal
@@ -130,6 +130,9 @@ bar {
         status_command i3status
 }
 
+# BY AMBIENTE GRAFICO
+# abrir explorer files do cosmic
+bindsym $mod+g exec cosmic-files >/dev/null 2>&1
 # ==============================================================================
 # @README_Plugin
 # - O que está incluído: Configuração limpa do i3wm com navegação hjkl, fechamento com q ($mod+q) e redimensionamento via vim.
